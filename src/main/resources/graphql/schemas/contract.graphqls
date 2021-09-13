@@ -1,0 +1,23 @@
+type Contract {
+    id: ID!
+    file: String!
+    engagementCollege: String
+    engagementCompany: String
+    engagementStudent: String
+    totalHoursPerWeek: Float
+    reasonForRejection: String
+    signatureState: ContractSignatureState
+    studentApplicationId: ID
+    internEvaluationId: ID
+    adminId: ID
+    businessEvaluationId: ID
+}
+
+enum ContractSignatureState {
+    PENDING_FOR_ADMIN_REVIEW
+    WAITING_FOR_EMPLOYER_SIGNATURE
+    REJECTED_BY_EMPLOYER
+    WAITING_FOR_STUDENT_SIGNATURE
+    WAITING_FOR_ADMIN_SIGNATURE
+    SIGNED
+}
