@@ -1,3 +1,4 @@
 type Query {
     contract(id: ID): Contract
+    studentApplication(id: ID): StudentApplication
 }
