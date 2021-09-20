@@ -1,0 +1,13 @@
+type Resume {
+    id: ID
+    file: String
+    name: String
+    reviewState: ReviewState
+    reasonForRejection: String
+    ownerId: ID
+    applications: [StudentApplication]
+}
+
+enum ReviewState {
+    PENDING, APPROVED, DENIED
+}
