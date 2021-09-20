@@ -1,11 +1,9 @@
 package com.power222.tuimspfcauppbj.graphql;
 
+import com.power222.tuimspfcauppbj.graphql.StudentApplicationResolver.StudentApplicationSchema;
 import com.power222.tuimspfcauppbj.model.Contract;
-import com.power222.tuimspfcauppbj.model.StudentApplication;
 import com.power222.tuimspfcauppbj.service.ContractService;
-import com.power222.tuimspfcauppbj.service.StudentApplicationService;
 import com.power222.tuimspfcauppbj.util.ContractSignatureState;
-import com.power222.tuimspfcauppbj.util.StudentApplicationState;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,11 +15,11 @@ import java.util.Optional;
 @Component
 public class ContractResolver implements GraphQLQueryResolver {
     private final ContractService contractService;
-    private final StudentApplicationService studentApplicationService;
+    private final StudentApplicationResolver studentApplicationResolver;
 
-    public ContractResolver(ContractService contractService, StudentApplicationService studentApplicationService) {
+    public ContractResolver(ContractService contractService, StudentApplicationResolver studentApplicationResolver) {
         this.contractService = contractService;
-        this.studentApplicationService = studentApplicationService;
+        this.studentApplicationResolver = studentApplicationResolver;
     }
 
     public ContractSchema contract(long id) {
@@ -39,43 +37,11 @@ public class ContractResolver implements GraphQLQueryResolver {
                 contract.getTotalHoursPerWeek(),
                 contract.getReasonForRejection(),
                 contract.getSignatureState(),
-                studentApplication(contract.getStudentApplication() != null ? contract.getStudentApplication().getId() : -1L),
+                studentApplicationResolver.studentApplication(contract.getStudentApplication() != null ? contract.getStudentApplication().getId() : -1L),
                 contract.getInternEvaluation() != null ? contract.getInternEvaluation().getId() : -1L,
                 contract.getAdmin() != null ? contract.getAdmin().getId() : -1L,
                 contract.getBusinessEvaluation() != null ? contract.getBusinessEvaluation().getId() : -1L
         );
-    }
-
-    public StudentApplicationSchema studentApplication(long id) {
-        Optional<StudentApplication> studentApplicationOpt = studentApplicationService.getApplicationById(id);
-        if (studentApplicationOpt.isEmpty())
-            return null;
-        StudentApplication studentApplication = studentApplicationOpt.get();
-
-        return new StudentApplicationSchema(
-                id,
-                studentApplication.getState(),
-                studentApplication.getReasonForRejection(),
-                studentApplication.getOffer() != null ? studentApplication.getOffer().getId() : -1L,
-                studentApplication.getStudent() != null ? studentApplication.getStudent().getId() : -1L,
-                studentApplication.getResume() != null ? studentApplication.getResume().getId() : -1L,
-                studentApplication.getInterview() != null ? studentApplication.getInterview().getId() : -1L,
-                studentApplication.getContract() != null ? studentApplication.getContract().getId() : -1L
-        );
-    }
-
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    private static class StudentApplicationSchema {
-        private long id;
-        private StudentApplicationState state;
-        private String reasonForRejection;
-        private long offerId;
-        private long studentId;
-        private long resumeId;
-        private long interviewId;
-        private long contractId;
     }
 
     @Data
