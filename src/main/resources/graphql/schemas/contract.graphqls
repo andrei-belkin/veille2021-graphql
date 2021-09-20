@@ -7,7 +7,7 @@ type Contract {
     totalHoursPerWeek: Float
     reasonForRejection: String
     signatureState: ContractSignatureState
-    studentApplicationId: ID
+    studentApplication: StudentApplication
     internEvaluationId: ID
     adminId: ID
     businessEvaluationId: ID
