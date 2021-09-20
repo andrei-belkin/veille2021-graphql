@@ -24,7 +24,7 @@ public class ContractService {
         return newContract;
     }
 
-    public List<Contract> getAllContract() {
+    public List<Contract> getAllContracts() {
         return contractRepo.findAll();
     }
 

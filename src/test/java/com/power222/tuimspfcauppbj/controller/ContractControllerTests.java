@@ -47,7 +47,7 @@ public class ContractControllerTests {
         for (int i = 0; i < nbContract; i++)
             list.add(new Contract());
 
-        when(svc.getAllContract()).thenReturn(list);
+        when(svc.getAllContracts()).thenReturn(list);
 
         MvcResult result = mvc.perform(get("/api/contract")).andReturn();
 

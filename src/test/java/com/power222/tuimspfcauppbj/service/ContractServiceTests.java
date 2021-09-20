@@ -78,7 +78,7 @@ public class ContractServiceTests {
 
         when(contractRepo.findAll()).thenReturn(Arrays.asList(c1, c2, c3));
 
-        var actual = contractSvc.getAllContract();
+        var actual = contractSvc.getAllContracts();
 
         assertThat(actual).hasSize(3);
     }

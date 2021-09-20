@@ -18,7 +18,7 @@ public class ContractController {
 
     @GetMapping
     public List<Contract> getAllContracts() {
-        return svc.getAllContract();
+        return svc.getAllContracts();
     }
 
     @GetMapping("/{id}")
