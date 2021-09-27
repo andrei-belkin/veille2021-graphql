@@ -10,7 +10,7 @@ type Student {
     phoneNumber: String
     address: String
     semesters: [String]
-    resumes: [Resume]
+    resumeIds: [ID]
     allowedOffersIds: [ID]
-    applications: [StudentApplication]
+    applicationIds: [ID]
 }

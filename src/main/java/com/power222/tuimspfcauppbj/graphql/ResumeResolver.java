@@ -18,12 +18,10 @@ import java.util.stream.Collectors;
 @Component
 public class ResumeResolver implements GraphQLQueryResolver {
     private final ResumeService resumeService;
-    private final StudentApplicationResolver studentApplicationResolver;
     private final StudentApplicationRepository studentApplicationRepository;
 
-    public ResumeResolver(ResumeService resumeService, StudentApplicationResolver studentApplicationResolver, StudentApplicationRepository studentApplicationRepository) {
+    public ResumeResolver(ResumeService resumeService, StudentApplicationRepository studentApplicationRepository) {
         this.resumeService = resumeService;
-        this.studentApplicationResolver = studentApplicationResolver;
         this.studentApplicationRepository = studentApplicationRepository;
     }
 

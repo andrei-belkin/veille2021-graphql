@@ -5,5 +5,5 @@ type Resume {
     reviewState: ReviewState
     reasonForRejection: String
     ownerId: ID
-    applicationIds: [StudentApplication]
+    applicationIds: [ID]
 }
