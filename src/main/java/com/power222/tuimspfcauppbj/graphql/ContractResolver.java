@@ -1,6 +1,5 @@
 package com.power222.tuimspfcauppbj.graphql;
 
-import com.power222.tuimspfcauppbj.graphql.StudentApplicationResolver.StudentApplicationSchema;
 import com.power222.tuimspfcauppbj.model.Contract;
 import com.power222.tuimspfcauppbj.service.ContractService;
 import com.power222.tuimspfcauppbj.util.ContractSignatureState;
@@ -37,7 +36,7 @@ public class ContractResolver implements GraphQLQueryResolver {
                 contract.getTotalHoursPerWeek(),
                 contract.getReasonForRejection(),
                 contract.getSignatureState(),
-                studentApplicationResolver.studentApplication(contract.getStudentApplication() != null ? contract.getStudentApplication().getId() : -1L),
+                contract.getStudentApplication() != null ? contract.getStudentApplication().getId() : -1L,
                 contract.getInternEvaluation() != null ? contract.getInternEvaluation().getId() : -1L,
                 contract.getAdmin() != null ? contract.getAdmin().getId() : -1L,
                 contract.getBusinessEvaluation() != null ? contract.getBusinessEvaluation().getId() : -1L
@@ -56,7 +55,7 @@ public class ContractResolver implements GraphQLQueryResolver {
         private float totalHoursPerWeek;
         private String reasonForRejection;
         private ContractSignatureState signatureState;
-        private StudentApplicationSchema studentApplication;
+        private long studentApplicationId;
         private long internEvaluationId;
         private long adminId;
         private long businessEvaluationId;
