@@ -1,6 +1,5 @@
 package com.power222.tuimspfcauppbj.graphql;
 
-import com.power222.tuimspfcauppbj.graphql.ResumeResolver.ResumeSchema;
 import com.power222.tuimspfcauppbj.model.StudentApplication;
 import com.power222.tuimspfcauppbj.service.StudentApplicationService;
 import com.power222.tuimspfcauppbj.util.StudentApplicationState;
