@@ -1,0 +1,3 @@
+enum ReviewState {
+    PENDING, APPROVED, DENIED
+}

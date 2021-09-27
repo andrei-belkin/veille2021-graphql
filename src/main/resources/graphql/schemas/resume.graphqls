@@ -7,7 +7,3 @@ type Resume {
     ownerId: ID
     applications: [StudentApplication]
 }
-
-enum ReviewState {
-    PENDING, APPROVED, DENIED
-}
