@@ -1,4 +1,4 @@
-package com.power222.tuimspfcauppbj.graphql;
+package com.power222.tuimspfcauppbj.graphql.resolver;
 
 import com.power222.tuimspfcauppbj.dao.StudentApplicationRepository;
 import com.power222.tuimspfcauppbj.model.Resume;
