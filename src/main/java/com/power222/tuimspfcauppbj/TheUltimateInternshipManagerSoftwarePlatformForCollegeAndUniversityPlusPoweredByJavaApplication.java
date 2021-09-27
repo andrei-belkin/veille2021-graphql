@@ -1,10 +1,12 @@
 package com.power222.tuimspfcauppbj;
 
 import com.power222.tuimspfcauppbj.dao.UserRepository;
+import com.power222.tuimspfcauppbj.graphql.Scalar;
 import com.power222.tuimspfcauppbj.model.Admin;
 import com.power222.tuimspfcauppbj.model.Employer;
 import com.power222.tuimspfcauppbj.model.Student;
 import com.power222.tuimspfcauppbj.util.SemesterContext;
+import graphql.schema.idl.RuntimeWiring;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -80,6 +82,11 @@ public class TheUltimateInternshipManagerSoftwarePlatformForCollegeAndUniversity
                         .phoneNumber(getRandomPhoneNumber(random))
                         .semesters(Collections.singletonList(((i % 2) == 0) ? SemesterContext.getPresentSemester() : "a2019h2020"))
                         .build());
+
+            RuntimeWiring.newRuntimeWiring()
+                    .scalar(Scalar.LOCAL_DATE)
+                    .scalar(Scalar.LOCAL_TIME)
+                    .build();
         }
 
         private static String getRandomPhoneNumber(Random random) {
