@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface StudentApplicationRepository extends JpaRepository<StudentApplication, Long> {
     List<StudentApplication> findAllByStateAndContractIsNull(StudentApplicationState state);
-
+    List<StudentApplication> findAllByResume_Id(long id);
     List<StudentApplication> findAllByContractSignatureState(ContractSignatureState state);
 }

@@ -1,7 +1,10 @@
 package com.power222.tuimspfcauppbj.graphql;
 
+import com.power222.tuimspfcauppbj.dao.StudentApplicationRepository;
 import com.power222.tuimspfcauppbj.model.Resume;
+import com.power222.tuimspfcauppbj.model.StudentApplication;
 import com.power222.tuimspfcauppbj.service.ResumeService;
+import com.power222.tuimspfcauppbj.graphql.StudentApplicationResolver.StudentApplicationSchema;
 import com.power222.tuimspfcauppbj.util.ReviewState;
 import graphql.kickstart.tools.GraphQLQueryResolver;
 import lombok.AllArgsConstructor;
@@ -9,18 +12,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Component
 public class ResumeResolver implements GraphQLQueryResolver {
     private final ResumeService resumeService;
     private final StudentApplicationResolver studentApplicationResolver;
+    private final StudentApplicationRepository studentApplicationRepository;
 
-    public ResumeResolver(ResumeService resumeService, StudentApplicationResolver studentApplicationResolver) {
+    public ResumeResolver(ResumeService resumeService, StudentApplicationResolver studentApplicationResolver, StudentApplicationRepository studentApplicationRepository) {
         this.resumeService = resumeService;
         this.studentApplicationResolver = studentApplicationResolver;
+        this.studentApplicationRepository = studentApplicationRepository;
     }
 
     public ResumeSchema resume(long id) {
@@ -29,6 +34,11 @@ public class ResumeResolver implements GraphQLQueryResolver {
             return null;
         Resume resume = resumeOpt.get();
 
+        List<StudentApplication> studentApplications = studentApplicationRepository.findAllByResume_Id(resume.getId());
+        List<StudentApplicationSchema> studentApplicationSchemas = new ArrayList<>();
+        for (StudentApplication application : studentApplications)
+            studentApplicationSchemas.add(studentApplicationResolver.studentApplication(application.getId()));
+
         return new ResumeSchema(
                 id,
                 resume.getFile(),
@@ -36,7 +46,7 @@ public class ResumeResolver implements GraphQLQueryResolver {
                 resume.getReviewState(),
                 resume.getReasonForRejection(),
                 resume.getOwner().getId(),
-                resume.getApplications().stream().map(application -> studentApplicationResolver.studentApplication(application.getId())).collect(Collectors.toList())
+                studentApplicationSchemas
         );
     }
 
