@@ -3,4 +3,5 @@ type Query {
     studentApplication(id: ID): StudentApplication
     resume(id: ID): Resume
     student(id: ID): Student
+    internshipOffer(id: ID): InternshipOffer
 }

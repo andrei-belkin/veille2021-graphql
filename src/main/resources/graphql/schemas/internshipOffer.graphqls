@@ -1,0 +1,15 @@
+type InternshipOffer {
+    id: ID
+    title: String
+    details: InternshipOfferDetails
+    reviewState: ReviewState
+    reasonForRejection: String
+    file: String
+    employerId: ID
+    allowedStudentsIds: [ID]
+    applications: [ID]
+}
+
+type InternshipOfferDetails {
+    description: String
+}
