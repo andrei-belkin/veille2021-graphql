@@ -52,7 +52,7 @@ public class TheUltimateInternshipManagerSoftwarePlatformForCollegeAndUniversity
                         .email("root@local.host")
                         .password(passwordEncoder.encode("password"))
                         .name("Default Admin")
-                        .passwordExpired(true)
+                        .passwordExpired(false)
                         .build());
 
             List<String> firstNames = Arrays.asList("Andrei", "Ernesto", "Simon", "Song", "Ismail", "Fabory", "Mathieu", "François", "Félix");
