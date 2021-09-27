@@ -1,0 +1,16 @@
+type Student {
+    id: ID
+    firstName: String
+    lastName: String
+    fullName: String
+    studentId: String
+    email: String
+    passwordExpired: Boolean
+    disabled: Boolean
+    phoneNumber: String
+    address: String
+    semesters: [String]
+    resumes: [Resume]
+    allowedOffersIds: [ID]
+    applications: [StudentApplication]
+}
